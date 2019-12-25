@@ -154,5 +154,202 @@ In this case i have named a variable called robbie.
  
 =end 
 
+=begin 
 
+Exes And Ohs
+This is a great question for interview prep, so let's not google it. Instead, try whiteboarding, and thinking of your approach before coding. There are multiple approaches to this question, so try to think of the most efficient one you can!
+
+
+Write a method that will take a string as an argument. The method will check this string, and count the amount of 'x's and 'o's. It should return true if the amount of 'x's and 'o's are the same, and should return false if they are different. It should also be case insensitive.
+
+E.g. exes_and_ohs("ooxx") should return true
+
+E.g. exes_and_ohs("oOxXxoX") should return false
+
+E.g. exes_and_ohs("zpzpzpp") should return true
+
+=end 
+
+def exes_and_ohs (string)
+
+=begin
+    psuedocode 
+    1. We are given a method- def exes_and_ohs
+    2. it takes a string as an argument in this case ("xxxooXoO")
+    3. We need to count the amounts of 'x's and 'o's. 
+    4. It should be true if the amount of x's and o's are the same.
+    5. else it should return false. 
+    6. It also needs to be casesensitive. 
+
+    1.We know that we are asked to compare the amount of x's to o's. 
+    2. we can use two variables inorder to try and seperately count x's and o's
+    3. so we define the first variable as x_count
+    4. we make this variable the sum of going through our string and lowercasing each letter and then counting the amount of x'(s)
+    5. this is achieved by the following
+    6. x_count(this is the variable) = string(the argument).downcase(makes everything lower case).count"x"(counts all the x's wihin the argument)
+    7. we repeat this process with our second variable
+    8. o_count (our second variable) = string(the argument).downcase(makes everything lower case).count"x"(counts all the x's within the argument)
+    9.At this stage we have saved into our two variables two numbers.
+    10. in x_count = we have the total number of x's within our argument.
+    11 in o_count = we have the total number of o's within our argument. 
+    12 we now need to compare the two variables in order to see if they match.
+    13. if they match we put true 
+    14. if it doesn't we put false. 
+    13. We can do this using an if/else statement. 
+=end
+    
+       x_count = string.downcase.count"x"
+       o_count = string.downcase.count"o"
+          if x_count == o_count
+             true
+          else 
+            false 
+          end 
+       end
+    p exes_and_ohs("xxxooXoO")
+
+=begin
+Isogram
+An isogram is a word that has no repeating letters; consecutive or non-consecutive.
+
+Implement a method that determines whether a string that contains only letters is an isogram. The method will take the string as an argument, and will return either true or false.
+
+*E.g.* is_an_isogram("hello") should return false
+
+*E.g.* is_an_isogram("scary") should return true
+=end 
+def is_an_isogram (string)
+    isogram = string.downcase.scan (/\p{letter}/) #regular expression. 
+    isogram.uniq == isogram 
+  end
+  puts is_an_isogram "hello world"
+
+=begin 
+Middle Character
+Create a method that takes a string as an argument, and returns its middle character.
+
+If the string's length is an even number, return the middle 2 characters
+
+E.g. middle_character("testing"), should return "t"
+
+E.g. middle_character("middleCharacters"), should return "ha"
+
+E.g. middle_character("A"), should return "A"
+=end 
+
+def middle_character(str)
+	
+	if str.length == 0 
+		p str
+	elsif str.length.odd? 
+		p str[str.length/2]
+	elsif str.length.even?
+		p str[str.length / 2-1] + str[str.length/2]
+	#Your code here
+end
+end 
+
+p middle_character ""
+
+=begin
+Something Sounds Snakey
+Summer is rolling around, snakes are back out and about. Only now, they can take human form. The one way to find out whether or not you are talking to a snake is the way they pronounce their s's. They tend to hold them for a ssplit ssecond too long.
+
+Write a method where, given a string as an argument, you return true whether the person is a snake, or false if they are not. Someone is a snake if they have 2 or more s's together in one of the words they say (Case insensitive).
+
+E.g. is_it_a_snake("Ssay what?! I'n no snake"), should return true, as 'Ssay' had 2 or more s's in a row
+
+E.g. is_it_a_snake("Something sseems a little ssuspect"), should return true, as 'sseems' and 'ssuspect' had 2 or more s's in a row
+
+E.g. is_it_a_snake("Hello there Samantha"), should return false
+
+E.g. is_it_a_snake("Sometimes, I just love saying words with an 's' in them"), should return false, as sometimes has 2 s's, but they are not next to each other
+=end 
+def is_it_a_snake(str)
+	#your code here
+	if str =~ /s{2}/i
+        return true
+    else
+        return false
+    end
+end
+=begin
+Valid ATM Pin
+ATM machines allow 4 or 6 digit PIN codes and PIN codes cannot contain anything but exactly 4 digits or exactly 6 digits. Your task is to create a method that takes a string and returns true if the PIN is valid and false if it's not.
+
+E.g. is_valid_PIN("1234"), should return true
+
+E.g. is_valid_PIN("a234"), should return false
+
+E.g. is_valid_PIN("123456"), should return true
+=end 
+def is_valid_PIN(pin)
+    
+    if pin.length == 4 or pin.length == 6 and pin.match(/^[0-9]*$/)
+       p true 
+    else 
+       p false
+    end 
+  end 
+=begin
+  1. if the length of the pin is 4 or 6
+  2. and the pin contains only numbers between 0-9
+  3. true
+  4. anything else
+  5. is false.
+=end
+      
+  is_valid_PIN("a234")
+  
+      def is_valid_PIN(pin)
+=begin
+  1. save the length of the pin into a variable
+  2. save into a variable the count of the argument while making sure it only counters integers between 0 and 9
+  3. Validate that the variables length and count match
+  4. through a conditional (if/elsif/else statement)
+  5. if this is a match print true 
+  6. print value if either variable doesn't match. 
+=end
+  
+      length = pin.length     #return the character length of string
+      count = pin.count"0-9"  #count how many characters are numbers
+      
+      if length == 4 && count == 4
+          p true
+      elsif length == 6 && count == 6
+          p true
+      else
+          p false
+      end
+  end
+  p is_valid_PIN("123456")
+  
+=begin 
+Input Output
+Write a program that asks a user for their name and their age, and responds
+as shown here, letting the user know how long it will be until they are 100 years old:
+
+Program is run and outputs: "What is your name?"
+
+User inputs: "Tom"
+
+Program outputs: "Hi Tom! How old are you?"
+
+User inputs: 40
+
+Program outputs: "Wow! You are 40 years old. In 60 years, you will be 100!"
+
+
+Test your program with different outputs.
+=end
+def get_details
+    puts "What is your name?"
+        input_name = gets.chomp
+    puts "Hi #{input_name}! How old are you?"
+      input_age = gets.chomp.to_i
+    puts "Wow! You are #{input_age} years old. In #{100 - input_age} years, you will be 100!"
+        
+    end
+    
+    get_details 
     
